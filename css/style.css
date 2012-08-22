@@ -1,0 +1,66 @@
+#newMovie {
+	display:none;
+}
+
+#moviesList {
+	margin:5px;
+	padding:5px;
+}
+
+#moviesList li:nth-child(odd) {
+	background: #e5e5e5;
+}
+
+#moviesList li:nth-child(even) {
+	background: #fff;
+}
+
+#searchList {
+	display:none;
+	height:275px;
+	overflow: auto;
+}
+
+#searchList .movieContainer {
+	margin-top:8px;
+	padding:4px;
+	display:none;
+	border-top: 1px dotted #ccc;
+}
+
+#searchList .movieContainer .movieTitle {
+	width: 345px;
+	float: left;
+	font-weight: bold;
+	font-size:14px;
+}
+
+#searchList .movieContainer .movieImage {
+	float:left;
+	width: 65px;
+	height: 91px;
+	margin-right:15px;
+	
+}
+
+#searchList .movieContainer .movieSynopsis {
+	width: 345px;
+	float: left;
+	margin-top:4px;
+}
+
+#searchList .movieContainer button{
+	margin-top:4px;	
+}
+
+/*#searchList div.movieContainer:nth-child(even) {
+	background: #e5e5e5;
+}
+
+#searchList div.movieContainer:nth-child(odd) {
+	background: #fff;
+}*/
+
+.clear{
+	clear:both;
+}

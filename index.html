@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Movies!</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/foundation.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script type="text/html" id='movieTemplate'>
+		<div class="movieContainer">
+		  	<div class="movieImage">
+		  		<img src="<%= movie.posters.thumbnail %>" />
+		  	</div>
+		  	<div class="movieTitle">
+		  		<a href="<%= movie.links.alternate %>" target="_blank">
+		  			<%= movie.title %>
+		  		</a>
+		  	</div>
+		  	<div class="movieSynopsis"><%= movie.synopsis %></div>
+		  	<div class="clear"></div>
+		  	<button class="small button right addToMovies">Add To My Movies</button>
+		  	<div class="clear"></div>
+		  <div>
+	</script>
+</head>
+
+<body>
+	<h1>My Movies!</h1>
+	<ul id="moviesList"></ul>
+	<button id="addMovie" class="medium button">Add Movie</button>
+
+	<div id="newMovie" class="reveal-modal">
+	  <input type="text" placeholder="Type to search"/>
+		<!-- <button class="medium button">Find Movie</button> -->
+		<div id="searchList"></div>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+
+	<script src="scripts/jquery.js"></script>
+	<script src="scripts/underscore.js"></script>
+	<script src="scripts/backbone.js"></script>
+	<script src="scripts/modernizr.foundation.js"></script>
+	<script src="scripts/foundation.min.js"></script>
+	<script src="scripts/app.js"></script>
+	<script src="scripts/scripts.js"></script>
+</body>
+</html>
