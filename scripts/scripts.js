@@ -7,7 +7,7 @@
 
 	// Model
 	Movie = Backbone.Model.extend({
-		name: null,
+		title: null,
 		id: null
 	});
 
@@ -32,21 +32,17 @@
 		},
 		showPrompt: function () {
 			var movieName = prompt("What is the name of your movie?");
-			var movieModel = new Movie({ name: movieName });
+			var movieModel = new Movie({ title: movieName });
 			this.movies.add( movieModel );  
 		},
 		addMovieLi: function (model) {
-			$("#moviesList").append("<li>" + model.get('name') + "</li>");
+			$("#moviesList").append("<li>" + model.get('title') + "</li>");
 		},
-		addMovie: function (jqObj) {
-			var input = jqObj.parent().find('input');
-			var modal = jqObj.parent();
-			var movieModel = new Movie({name: input.val()});
+		addToMovies: function (e) {
+			var id = $(e.currentTarget).parent().data("id");
+			var title = $(e.currentTarget).parent().data("title");
+			var movieModel = new Movie({ title: title, id: id});
 			appview.movies.add(movieModel);
-			input.val('');
-		},
-		addToMovies: function (model) {
-			console.log(model);
 		},
 		movieList: function () {
 			return this.movies;

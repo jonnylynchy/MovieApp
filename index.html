@@ -10,7 +10,7 @@
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<script type="text/html" id='movieTemplate'>
-		<div class="movieContainer">
+		<div class="movieContainer" data-id="<%= movie.id %>" data-title="<%= movie.title %>">
 		  	<div class="movieImage">
 		  		<img src="<%= movie.posters.thumbnail %>" />
 		  	</div>
