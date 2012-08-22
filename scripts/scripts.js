@@ -4,17 +4,21 @@
 	var apikey = "7vmuq9bufc464x8jnag23ggw";
 	var baseUrl = "http://api.rottentomatoes.com/api/public/v1.0";
 	var moviesSearchUrl = baseUrl + '/movies.json?apikey=' + apikey + "&page_limit=" + queryLimit;
+ 	var movieJSONUrl = baseUrl + '/movies/';
 
 	// Model
 	Movie = Backbone.Model.extend({
 		title: null,
-		id: null
+		id: null,
+		thumbnail: null,
+		link: null,
+		synopsis: null
 	});
 
 	// Collection
 	Movies = Backbone.Collection.extend({
 		initialize: function (models, options) {
-			this.bind("add", options.view.addMovieLi);
+			this.bind("add", options.view.addMovie);
 		}
 	});
 	
@@ -30,19 +34,34 @@
 		showModal: function () {
 			$('#newMovie').reveal();
 		},
-		showPrompt: function () {
-			var movieName = prompt("What is the name of your movie?");
-			var movieModel = new Movie({ title: movieName });
-			this.movies.add( movieModel );  
-		},
-		addMovieLi: function (model) {
-			$("#moviesList").append("<li>" + model.get('title') + "</li>");
+		addMovie: function (model) {
+			var template = $("#myMovieTemplate").html();
+			var movie = {
+				title: model.get('title'),
+				id: model.get('id'),
+				thumbnail: model.get('thumbnail'),
+				link: model.get('link'),
+				synopsis: model.get('synopsis')
+			}
+    	$("#moviesList").append(_.template(template,{movie:movie}));
 		},
 		addToMovies: function (e) {
 			var id = $(e.currentTarget).parent().data("id");
-			var title = $(e.currentTarget).parent().data("title");
-			var movieModel = new Movie({ title: title, id: id});
-			appview.movies.add(movieModel);
+			var movieJSON = movieJSONUrl + id + '.json?apikey=' + apikey;
+			$.ajax({
+		    url: movieJSON,
+		    dataType: "jsonp",
+		    success: function(movie){
+		    	var movieModel = new Movie({ 
+						title: movie.title, 
+						id: movie.id,
+						thumbnail: movie.posters.thumbnail,
+						link: movie.links.alternate,
+						synopsis: movie.synopsis
+					});
+					appview.movies.add(movieModel);
+		    }
+		  });
 		},
 		movieList: function () {
 			return this.movies;
