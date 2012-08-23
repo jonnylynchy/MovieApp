@@ -2,38 +2,47 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Movies!</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/foundation.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script src="scripts/fonts.js"></script>
 	<!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<script type="text/html" id='myMovieTemplate'>
-		<div class="movieContainer" data-id="<%= movie.id %>">
-		  	<div class="movieImage">
+		<div class="movieContainer row" data-id="<%= movie.id %>">
+		  	<div class="two columns">
 		  		<img src="<%= movie.thumbnail %>" />
 		  	</div>
-		  	<div class="movieTitle">
+		  	<div class="eight columns">
 		  		<a href="<%= movie.link %>" target="_blank">
 		  			<%= movie.title %>
 		  		</a>
+		  		<p>
+		  			<%= movie.synopsis %>
+		  		</p>
 		  	</div>
-		  	<div class="movieSynopsis"><%= movie.synopsis %></div>
-		  	<div class="clear"></div>
+		  	<div class="two columns">
+		  		<div class="year"><%= movie.year %></div>
+		  		<div class="rating"><%= movie.rating %></div>
+		  	</div>
 		  <div>
 	</script>
 	<script type="text/html" id='movieTemplate'>
-		<div class="movieContainer" data-id="<%= movie.id %>" data-title="<%= movie.title %>">
-		  	<div class="movieImage">
+		<div class="movieContainer row" data-id="<%= movie.id %>" data-title="<%= movie.title %>">
+		  	<div class="three columns">
 		  		<img src="<%= movie.posters.thumbnail %>" />
 		  	</div>
-		  	<div class="movieTitle">
+		  	<div class="nine columns">
 		  		<a href="<%= movie.links.alternate %>" target="_blank">
 		  			<%= movie.title %>
 		  		</a>
+		  		<p>
+		  			<%= movie.synopsis %>
+		  		</p>
 		  	</div>
-		  	<div class="movieSynopsis"><%= movie.synopsis %></div>
 		  	<div class="clear"></div>
 		  	<button class="small button right addToMovies">Add To My Movies</button>
 		  	<div class="clear"></div>
@@ -42,13 +51,27 @@
 </head>
 
 <body>
-	<h1>My Movies!</h1>
-	<div id="moviesList"></div>
-	<button id="addMovie" class="medium button">Add Movie</button>
+	<header class="row">
+		<h1>My Movie List</h1>
+	</header>
+	<div class="row" id="main">
+		<div class="eight columns">
+    	<div id="moviesList" class="panel radius">
+    		<h5>Currently Own</h5>
+    	</div>
+	  </div>
+	  <div class="four columns">
+	    <div class="panel radius">
+	    	<p>
+	    		Search for movies and add them to your list.
+	    	</p>
+			  <button id="addMovie" class="medium button">Add Movie</button>
+			</div>
+	  </div>
+	</div>
 
 	<div id="newMovie" class="reveal-modal">
 	  <input type="text" placeholder="Type to search"/>
-		<!-- <button class="medium button">Find Movie</button> -->
 		<div id="searchList"></div>
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>

@@ -1,18 +1,74 @@
+body{
+	background: #000;
+}
+
+header{
+	
+}
+
+h1{
+	font-family: 'Abril Fatface';
+	text-shadow: 1px 1px #ccc;
+	color: #fff;
+}
+
+#main {
+	background: url(../images/curtains.jpeg) no-repeat top center;
+	border-radius: 10px;
+	margin-top:15px;
+	padding-top:10px;
+	min-height: 400px;
+}
+
 #newMovie {
 	display:none;
 }
 
-#moviesList {
-	margin:5px;
-	padding:5px;
+.panel {
+	 opacity: .9;
 }
 
-#moviesList li:nth-child(odd) {
+#moviesList {
+
+}
+
+/*#moviesList li:nth-child(odd) {
 	background: #e5e5e5;
 }
 
 #moviesList li:nth-child(even) {
 	background: #fff;
+}*/
+
+#moviesList .movieContainer {
+	margin-top:8px;
+	padding:4px;
+	display:none;
+	border-top: 1px dotted #ccc;
+}
+
+#moviesList .movieContainer a {
+	font-weight: bold;
+	font-size:18px;
+}
+
+#moviesList .movieContainer .rating {
+	font-family: 'Ultra', serif;
+	font-size: 22px;
+	border: 2px solid #000;
+	margin-top:7px;
+	padding:5px;
+	text-align:center;
+}
+
+#moviesList .movieContainer .year {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#moviesList .movieContainer p {
+	margin-top:8px;
 }
 
 #searchList {

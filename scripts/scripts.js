@@ -12,7 +12,9 @@
 		id: null,
 		thumbnail: null,
 		link: null,
-		synopsis: null
+		synopsis: null,
+		year: null,
+		rating: null
 	});
 
 	// Collection
@@ -41,9 +43,13 @@
 				id: model.get('id'),
 				thumbnail: model.get('thumbnail'),
 				link: model.get('link'),
-				synopsis: model.get('synopsis')
+				synopsis: model.get('synopsis'),
+				year: model.get('year'),
+				rating: model.get('rating')
 			}
-    	$("#moviesList").append(_.template(template,{movie:movie}));
+			var element = $(_.template(template,{movie:movie}));
+    	$("#moviesList").append(element);
+    	element.fadeIn();
 		},
 		addToMovies: function (e) {
 			var id = $(e.currentTarget).parent().data("id");
@@ -55,9 +61,11 @@
 		    	var movieModel = new Movie({ 
 						title: movie.title, 
 						id: movie.id,
-						thumbnail: movie.posters.thumbnail,
+						thumbnail: movie.posters.profile,
 						link: movie.links.alternate,
-						synopsis: movie.synopsis
+						synopsis: movie.synopsis,
+						year: movie.year,
+						rating: movie.mpaa_rating
 					});
 					appview.movies.add(movieModel);
 		    }
@@ -93,8 +101,9 @@
  		if(data.movies) {
  			$.each(movies, function(index, movie) {
  				var template = $("#movieTemplate").html();
-    		$('#searchList').append(_.template(template,{movie:movie}));
-    		$('#searchList .movieContainer').fadeIn();
+ 				var element = $(_.template(template,{movie:movie}));
+    		$("#searchList").append(element);
+    		element.fadeIn();
 		 	});
  		} else {
  			$('#searchList').hide();
