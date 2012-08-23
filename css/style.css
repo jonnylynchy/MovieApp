@@ -3,13 +3,18 @@ body{
 }
 
 header{
-	
+	position: relative;
+	height:70px;
 }
 
 h1{
+	display:block;
+	position:absolute;
+	left:150px;
 	font-family: 'Abril Fatface';
 	text-shadow: 1px 1px #ccc;
 	color: #fff;
+	opacity: 0;
 }
 
 #main {
